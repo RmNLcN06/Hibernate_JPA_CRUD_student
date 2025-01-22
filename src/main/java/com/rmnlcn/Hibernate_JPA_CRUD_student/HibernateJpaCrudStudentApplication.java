@@ -17,8 +17,28 @@ public class HibernateJpaCrudStudentApplication {
 	@Bean
 	public CommandLineRunner commandLineRunner(StudentDAO studentDAO) {
 		return runner -> {
-			createStudent(studentDAO);
+			// createStudent(studentDAO);
+			createMultipleStudents(studentDAO);
 		};
+	}
+
+	private void createMultipleStudents(StudentDAO studentDAO) {
+
+		// create multiple students
+		System.out.println("Creating five student objects ...");
+		Student tempStudent1 = new Student("Florian", "Luciano", "floLuc@example.com");
+		Student tempStudent2 = new Student("Isabelle", "Lapraz", "isaLap@example.com");
+		Student tempStudent3 = new Student("Sylvain", "Nicolas", "sylNic@example.com");
+		Student tempStudent4 = new Student("Christophe", "Nicolas", "chrNic@example.com");
+		Student tempStudent5 = new Student("Aurélie", "Faure", "aurFau@example.com");
+
+		// save the student objects
+		System.out.println("Saving the students ...");
+		studentDAO.save(tempStudent1);
+		studentDAO.save(tempStudent2);
+		studentDAO.save(tempStudent3);
+		studentDAO.save(tempStudent4);
+		studentDAO.save(tempStudent5);
 	}
 
 	private void createStudent(StudentDAO studentDAO) {
